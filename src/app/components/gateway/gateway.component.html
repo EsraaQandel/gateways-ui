@@ -1,0 +1,29 @@
+<mat-expansion-panel
+  (opened)="panelOpenState = true"
+  (closed)="panelOpenState = false"
+>
+  <mat-expansion-panel-header>
+    <mat-panel-title> {{ gateway.name }}</mat-panel-title>
+  </mat-expansion-panel-header>
+  <p><b>Level:</b> {{ gateway.level }}</p>
+  <p><b>IPv4 address:</b> {{ gateway.ipAddress }}</p>
+  <p><b>Serial Number:</b> {{ gateway.serialNumber }}</p>
+  <p *ngIf="gateway.devices.length">
+    <b>List Of Associated Peripheral Devices:</b>
+  </p>
+  <app-device
+    *ngFor="let device of gateway.devices"
+    [device]="device"
+    (delete)="openDeleteDialog($event)"
+  ></app-device>
+  <mat-action-row>
+    <button
+      mat-stroked-button
+      color="primary"
+      style="margin-right: 16px"
+      (click)="editDialog()"
+    >
+      Edit
+    </button>
+  </mat-action-row>
+</mat-expansion-panel>

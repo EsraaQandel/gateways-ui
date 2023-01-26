@@ -1,0 +1,68 @@
+<h1 mat-dialog-title>Add Gateway</h1>
+<div mat-dialog-content>
+  <form
+    class="add-gateway"
+    [formGroup]="form"
+    fxLayout="column"
+    fxLayoutGap="8px"
+    fxLayoutAlign="space-between stretch"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>Level</mat-label>
+      <label for="level"></label>
+      <input
+        formControlName="level"
+        id="level"
+        matInput
+        data-private
+        name="Level"
+        type="string"
+      />
+
+      <mat-error class="d-flex">This field is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <label for="name"></label>
+      <input
+        formControlName="name"
+        id="name"
+        matInput
+        data-private
+        name="name"
+        type="string"
+      />
+
+      <mat-error class="d-flex">This field is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>IP Address</mat-label>
+
+      <label for="ipAddress"></label>
+      <input
+        formControlName="ipAddress"
+        id="ipAddress"
+        matInput
+        name="ipAddress"
+        type="ipAddress"
+      />
+
+      <mat-error class="d-flex">You need to enter a valid ip address</mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close type="button">Cancel</button>
+  <button
+    [disabled]="!form.valid"
+    mat-button
+    color="primary"
+    type="button"
+    [mat-dialog-close]="true"
+    (click)="addGateway()"
+  >
+    Add
+  </button>
+</mat-dialog-actions>

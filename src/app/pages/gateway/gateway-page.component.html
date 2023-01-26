@@ -1,0 +1,46 @@
+<ng-container
+  *ngIf="{
+    error: facade.gateways$ | async,
+    loaded: facade.loaded$ | async,
+    gateway: facade.selectedGateway$ | async
+  } as state"
+>
+  <ng-container *ngIf="state.loaded; else loading">
+    <app-highlight-card
+      [title]="'Edit Gateway'"
+      [showBack]="true"
+      (addGateway)="openAddGatewayDialog()"
+    ></app-highlight-card>
+
+    <mat-card class="gateways-container" *ngIf="state.gateway">
+      <mat-card-header>
+        <mat-card-title>{{ state.gateway.name }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p><b>Level:</b> {{ state.gateway.level }}</p>
+        <p><b>IPv4 address:</b> {{ state.gateway.ipAddress }}</p>
+        <p><b>Serial Number:</b> {{ state.gateway.serialNumber }}</p>
+        <p *ngIf="state.gateway.devices.length">
+          <b>List Of Associated Peripheral Devices:</b>
+        </p>
+        <app-device
+          *ngFor="let device of state.gateway.devices"
+          [device]="device"
+          (delete)="openDeleteDialog($event, state.gateway.serialNumber)"
+        ></app-device>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button
+          mat-button
+          (click)="openAddDeviceDialog(state.gateway.serialNumber)"
+        >
+          Add Device
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
+</ng-container>
+
+<ng-template #loading>
+  <app-loader></app-loader>
+</ng-template>

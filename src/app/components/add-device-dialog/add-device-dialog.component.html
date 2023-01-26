@@ -1,0 +1,53 @@
+<h1 mat-dialog-title>Add Device</h1>
+<div mat-dialog-content>
+  <form
+    class="add-gateway"
+    [formGroup]="form"
+    fxLayout="column"
+    fxLayoutGap="8px"
+    fxLayoutAlign="space-between stretch"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>Vendor</mat-label>
+      <label for="vendor"></label>
+      <input
+        formControlName="vendor"
+        id="vendor"
+        matInput
+        data-private
+        name="Vendor"
+        type="string"
+      />
+
+      <mat-error class="d-flex">This field is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Status</mat-label>
+      <label for="status"></label>
+      <input
+        formControlName="status"
+        id="status"
+        matInput
+        data-private
+        name="status"
+        type="string"
+      />
+
+      <mat-error class="d-flex">This field is required.</mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close type="button">Cancel</button>
+  <button
+    [disabled]="!form.valid"
+    mat-button
+    color="primary"
+    type="button"
+    [mat-dialog-close]="true"
+    (click)="addDevice()"
+  >
+    Add
+  </button>
+</mat-dialog-actions>

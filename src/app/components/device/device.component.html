@@ -1,0 +1,20 @@
+<mat-card class="device-card">
+  <mat-card-header>
+    <mat-card-title>{{ device.uid }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>vendor: {{ device.vendor }}</p>
+    <p>creationDate: {{ device.creationDate | date }}</p>
+    <p>status: {{ device.status }}</p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button
+      mat-stroked-button
+      color="warn"
+      (click)="onDelete()"
+      *ngIf="showButton()"
+    >
+      Delete
+    </button>
+  </mat-card-actions>
+</mat-card>

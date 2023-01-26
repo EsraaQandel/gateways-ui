@@ -1,0 +1,25 @@
+<ng-container
+  *ngIf="{
+    gateways: facade.gateways$ | async,
+    error: facade.gateways$ | async,
+    loaded: facade.loaded$ | async
+  } as state"
+>
+  <ng-container *ngIf="state.loaded; else loading">
+    <app-highlight-card
+      (addGateway)="openAddGatewayDialog()"
+    ></app-highlight-card>
+
+    <mat-accordion class="gateways-container">
+      <app-gateways
+        *ngFor="let gateway of state.gateways"
+        [gateway]="gateway"
+        (addGateway)="openAddGatewayDialog()"
+      ></app-gateways>
+    </mat-accordion>
+  </ng-container>
+</ng-container>
+
+<ng-template #loading>
+  <app-loader></app-loader>
+</ng-template>
