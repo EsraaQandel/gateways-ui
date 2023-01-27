@@ -31,11 +31,14 @@ export class GatewayEffects {
       ofType(GatewaysActions.removeDevice),
       switchMap((action) =>
         this.service.removeDevice(action.serialNumber, action.deviceId).pipe(
-          map((gateway) =>
-            GatewaysActions.removeDeviceSuccess({
+          map((gateway) => {
+            this._snackBar.open('Device Deleted Successfully!', 'DISMISS', {
+              verticalPosition: 'top',
+            });
+            return GatewaysActions.removeDeviceSuccess({
               gateway,
-            })
-          ),
+            });
+          }),
           catchError(() =>
             of(GatewaysActions.removeDeviceFailure({ error: ERROR }))
           )
@@ -49,16 +52,17 @@ export class GatewayEffects {
       ofType(GatewaysActions.addGateway),
       switchMap((action) =>
         this.service.addGateway(action.gateway).pipe(
-          map((gateways) =>
-            GatewaysActions.addGatewaySuccess({
+          map((gateways) => {
+            this._snackBar.open('Gateway Added Successfully!', 'DISMISS', {
+              verticalPosition: 'top',
+            });
+            return GatewaysActions.addGatewaySuccess({
               gateways,
-            })
-          ),
+            });
+          }),
           catchError(() => {
-            this._snackBar.open(ERROR, 'x', {
-              duration: 3000,
-              panelClass: ['alert-snackbar'],
-              verticalPosition: 'bottom',
+            this._snackBar.open(ERROR, 'DISMISS', {
+              verticalPosition: 'top',
             });
             return of(GatewaysActions.addGatewayFailure({ error: ERROR }));
           })
@@ -72,11 +76,14 @@ export class GatewayEffects {
       ofType(GatewaysActions.addDevice),
       switchMap((action) =>
         this.service.addDevice(action.serialNumber, action.device).pipe(
-          map((gateway) =>
-            GatewaysActions.addDeviceSuccess({
+          map((gateway) => {
+            this._snackBar.open('Device Added Successfully!', 'DISMISS', {
+              verticalPosition: 'top',
+            });
+            return GatewaysActions.addDeviceSuccess({
               gateway,
-            })
-          ),
+            });
+          }),
           catchError(() =>
             of(GatewaysActions.addDeviceFailure({ error: ERROR }))
           )

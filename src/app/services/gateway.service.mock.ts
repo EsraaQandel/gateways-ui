@@ -25,9 +25,8 @@ export class GatewayServiceMock {
   }
 
   public addGateway(gateway: Gateway): Observable<Gateway[]> {
-    if (!this.isValidIp(gateway.ipAddress)) {
-      return throwError(new Error('Error')).pipe(delay(latency));
-    } else {
+    console.log(this.isValidIp(gateway.ipAddress));
+    if (this.isValidIp(gateway.ipAddress)) {
       let serialNumber = `#${this.gatewaysMock.length + 1}`;
       let updateGateway = new Gateway(
         gateway.level,
@@ -38,6 +37,7 @@ export class GatewayServiceMock {
       this.gatewaysMock = [...this.gatewaysMock, updateGateway];
       return of(this.gatewaysMock).pipe(delay(latency));
     }
+    return throwError(new Error('Error'));
   }
 
   public addDevice(serialNumber: string, device: Device): Observable<Gateway> {

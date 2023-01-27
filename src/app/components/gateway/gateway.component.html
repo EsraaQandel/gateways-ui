@@ -3,7 +3,11 @@
   (closed)="panelOpenState = false"
 >
   <mat-expansion-panel-header>
-    <mat-panel-title> {{ gateway.name }}</mat-panel-title>
+    <mat-panel-title
+      ><p>
+        <b>{{ gateway.name }}</b>
+      </p></mat-panel-title
+    >
   </mat-expansion-panel-header>
   <p><b>Level:</b> {{ gateway.level }}</p>
   <p><b>IPv4 address:</b> {{ gateway.ipAddress }}</p>
