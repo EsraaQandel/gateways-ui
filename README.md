@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
 
-# Pro Tip
+## Pro Tip
 
 Time is Money! So save yourself some time and watch [this short demo video instead!](https://www.loom.com/share/9fe19fdd5b99480098d8e150caae6956) :))
 
