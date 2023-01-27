@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexModule } from '@angular/flex-layout';
 
@@ -52,6 +53,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     MatButtonModule,
     FlexModule,
     MatDialogModule,
+    MatSelectModule,
     MatProgressSpinnerModule,
     MatIconModule,
     MatFormFieldModule,

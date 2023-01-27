@@ -24,16 +24,11 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Status</mat-label>
-      <label for="status"></label>
-      <input
-        formControlName="status"
-        id="status"
-        matInput
-        data-private
-        name="status"
-        type="string"
-      />
-
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let state of status" [value]="state">{{
+          state
+        }}</mat-option>
+      </mat-select>
       <mat-error class="d-flex">This field is required.</mat-error>
     </mat-form-field>
   </form>

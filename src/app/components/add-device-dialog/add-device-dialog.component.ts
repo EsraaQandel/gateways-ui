@@ -2,8 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GatewayFacade } from 'src/app/+state/gateways.facade';
+import { Status } from 'src/app/enum/device-status.enum';
 import { Device } from 'src/app/models/device.model';
-import { Gateway } from 'src/app/models/gateway.model';
 
 @Component({
   selector: 'app-add-device-dialog',
@@ -12,6 +12,7 @@ import { Gateway } from 'src/app/models/gateway.model';
 })
 export class AddDeviceDialogComponent implements OnInit {
   public form!: FormGroup;
+  public status = [Status.Offline, Status.Online];
 
   constructor(
     public facade: GatewayFacade,

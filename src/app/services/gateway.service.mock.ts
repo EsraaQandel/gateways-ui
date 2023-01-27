@@ -3,7 +3,7 @@ import { Gateway } from '../models/gateway.model';
 import { delay, Observable, of, throwError } from 'rxjs';
 import { gateways } from '../mock/gateways.mock';
 import { Device } from '../models/device.model';
-import { ipAddressRegex } from '../config/ip-regex';
+import { ipAddressRegex, isValidIpAddress } from '../config/ip-regex';
 
 const latency = 800;
 
@@ -25,8 +25,7 @@ export class GatewayServiceMock {
   }
 
   public addGateway(gateway: Gateway): Observable<Gateway[]> {
-    console.log(this.isValidIp(gateway.ipAddress));
-    if (this.isValidIp(gateway.ipAddress)) {
+    if (isValidIpAddress(gateway.ipAddress)) {
       let serialNumber = `#${this.gatewaysMock.length + 1}`;
       let updateGateway = new Gateway(
         gateway.level,
@@ -75,9 +74,5 @@ export class GatewayServiceMock {
       devices: this.selectedGateway.devices.filter((d) => d.uid !== deviceId),
     };
     return of(this.selectedGateway).pipe(delay(latency));
-  }
-
-  private isValidIp(ip: string): boolean {
-    return ipAddressRegex.test(ip);
   }
 }

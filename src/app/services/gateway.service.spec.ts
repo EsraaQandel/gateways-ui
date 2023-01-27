@@ -5,7 +5,7 @@ import { Device } from '../models/device.model';
 import { GatewayService } from './gateway.service';
 import { Status } from '../enum/device-status.enum';
 
-fdescribe('GatewayService', () => {
+describe('GatewayService', () => {
   let service: GatewayService;
   let gateway = new Gateway('level1', 'name1', '1.1.1.1', '#123');
   let device = {
